@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const copyWebpackPlugin = require ('copy-webpack-plugin')
-const cssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin');
 const dotEnv =require('dotenv-webpack')
 
 module.exports = {
@@ -13,6 +11,7 @@ module.exports = {
         path: path.resolve(__dirname,'dist'),
         filename:'[name].[contenthash].js'
     },
+    mode:'development',
     resolve:{
         extensions:['.js'],
         alias:{
@@ -65,11 +64,4 @@ module.exports = {
         }),
         new dotEnv(),
       ],
-    optimization:{
-      minimize: true,
-      minimizer:[
-        new cssMinimizerPlugin(),
-        new TerserPlugin(),
-      ]
-    }
 }
